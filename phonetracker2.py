@@ -1,5 +1,6 @@
 import tkinter as tk
 import json
+from datetime import datetime
 
 # Initialize the call dictionary with initial counts
 call_groups = {
@@ -25,10 +26,12 @@ def clear_all():
 
 # Function to save data to a plain text file
 def save_data():
-    with open("call_data.txt", "w") as file:
+    current_time = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    filename = f"call_data_{current_time}.txt"
+    with open(filename, "w") as file:
         for group, count in call_groups.items():
             file.write(f"{group}: {count}\n")
-    print("Data saved successfully!")
+    print(f"Data saved successfully to {filename}!")
 
 
 # Function to update the display with current counts
